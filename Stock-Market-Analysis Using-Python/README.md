@@ -1,4 +1,4 @@
-**Stock Market Analysis Using Python**
+## Stock Market Analysis Using Python
 
 This project aims to provide a comprehensive analysis and prediction of stock prices using machine learning techniques. The application leverages real-time stock data from Yahoo Finance and presents it in a user-friendly interface built with Streamlit.
 
