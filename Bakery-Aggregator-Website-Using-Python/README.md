@@ -1,17 +1,15 @@
 This project is a dynamic web-based application designed to aggregate bakery services, allowing users to browse and purchase cakes from various bakeries. Developed using the Django framework, the platform includes robust user and admin authentication, efficient search and filter functionalities, and a streamlined inventory and order management system for administrators.
 
-Steps:
+**Steps:**
 
-Clone the repository:
+1. Clone the repository
+2. Create a virtual environment:
 
-Create a virtual environment:
+    ```python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate` ```
+3. Install the required packages:
 
-python -m venv venv
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-
-Install the required packages:
-
-pip install 
+pip install
 
 certifi
 chardet
