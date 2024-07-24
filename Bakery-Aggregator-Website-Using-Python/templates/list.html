@@ -1,0 +1,44 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<hr>
+
+<!-- templates/list.html -->
+<form action="{% url 'list' %}" method="get">
+    <select name="category">
+        <option value="">All Categories</option>
+        {% for category in categories %}
+            <option value="{{ category.name }}">{{ category.name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Filter</button>
+</form>
+
+
+<hr>
+
+<div class="row">
+    {% for each in object_list %}
+    <div class="col">
+        <div class="card" style="width: 13rem;">
+            <img src="{{ each.image_url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ each.name|slice:":25"}} ...</h5>
+                <p class="card-text">₹{{ each.price|floatformat:2 }}</p>                
+                {% if each.cake_available is True %}
+                <li class="text-primary">Available</li>
+                {% else %}
+                <li class="text-danger">Out of Stock !</li>
+                {% endif %}<br>
+                <a href="{% url 'detail' each.id %}" class="btn btn-primary">View</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}
+

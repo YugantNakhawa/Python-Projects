@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta id="meta" name="viewport"
+        content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+
+    <style type="text/css">
+        body {
+            background-color: #f0f0f0;
+
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container">
+        {% if object.cake_available is True %}
+        <div class="row">
+            <div class="col-lg">
+                <br>
+                <div class="text-center" style="width: 22rem;">
+                    <img src="{{ object.image_url }}" class="card-img">
+                </div>
+            </div>
+            <div class="col-lg">
+                <br>
+                <div class="card card-body">
+                    <h3>{{ object.name }}</h3>
+                    <hr>
+                    <h4>Total: ₹{{ object.price|floatformat:2 }}</h4>
+                    <hr>
+                    <form id="orderForm" method="post" action="{% url 'create_order' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone:</label>
+                            <input type="text" class="form-control" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address:</label>
+                            <textarea class="form-control" id="address" name="address" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="paymentMethod">Payment Method:</label>
+                            <select class="form-control" id="paymentMethod" name="paymentMethod" required>
+                                <option value="">Select Payment Method</option>
+                                <option value="gpay">GPay</option>
+                                <option value="phonepe">PhonePe</option>
+                                <option value="paytm">Paytm</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="upiIdField" style="display: none;">
+                            <label for="upiId">Enter UPI ID:</label>
+                            <input type="text" class="form-control" id="upiId" name="upiId">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Place Order</button>
+                        <div class="alert alert-success mt-3" id="successMessage" style="display: none;">
+                            Order has been placed. It will be delivered shortly at your location.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+    <div class="mx-auto" style="width: 340px;">
+        <h4 class="text-danger">Sorry, this cake is out of Stock !</h4>
+    </div>
+    {% endif %}
+</body>
+
+</html>
+
+<script>
+    $(document).ready(function() {
+        $('#paymentMethod').change(function() {
+            if ($(this).val() === 'gpay' || $(this).val() === 'phonepe' || $(this).val() === 'paytm') {
+                $('#upiIdField').show();
+            } else {
+                $('#upiIdField').hide();
+            }
+        });
+
+        $('#orderForm').submit(function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+            if ($('#paymentMethod').val() === 'gpay' || $('#paymentMethod').val() === 'phonepe' || $('#paymentMethod').val() === 'paytm') {
+                if ($('#upiId').val() === '') {
+                    alert('Please enter UPI ID.');
+                    return;
+                }
+            }
+            fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        $('#successMessage').fadeIn().delay(5000).fadeOut();
+                    } else {
+                        throw new Error('Failed to place order');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // alert("Failed to place order. Please try again.");
+                });
+        });
+    });
+</script>
+
+{% endblock content %}

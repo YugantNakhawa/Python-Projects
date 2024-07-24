@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<div class="card mb-3" style="max-width: 840px;">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="{{ object.image_url }}" class="card-img">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h4 class="card-title">{{ object.name }}</h4>
+                <p class="card-text"><b>Weight: </b>{{ object.weight }}</p>
+                {% if object.bakery_name %}
+                    <p class="card-text"><b>Bakery Name: </b>{{ object.bakery_name }}</p>
+                {% endif %}
+                <hr>
+                <p class="card-text">{{ object.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <p>Updated: </p> -->
+<p>Price: ₹ {{ object.price|floatformat:2 }}</p>
+{% if object.cake_available %}
+    <div class="alert alert-success" role="alert" id="delivery-message" style="display: none;">
+        Delivery is available in your location.
+    </div>
+    <div id="buy-now-container" style="display: none;">
+        <a href="{% url 'checkout' object.pk %}" class="btn btn-outline-success" role="button">Buy Now</a>
+    </div>
+{% else %}
+    <div class="alert alert-danger" role="alert" id="delivery-message" style="display: none;">
+        Sorry! Delivery is not possible in your location.
+    </div>
+{% endif %}
+{% if object.cake_available %}
+    <br>
+    <form id="pincode-form">
+        <div class="form-row align-items-center">
+            <div class="col-auto">
+                <label class="sr-only" for="pincode">Pin Code</label>
+                <input type="text" class="form-control mb-2" id="pincode" placeholder="Enter Pin Code">
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-success mb-2" id="check-availability">Check Availability</button>
+            </div>
+        </div>
+    </form>
+{% endif %}
+<script>
+    document.getElementById("check-availability").addEventListener("click", function() {
+        var pincode = document.getElementById("pincode").value;
+        var pincodeList = {{ pincode_list|safe }};
+        if (pincodeList.includes(pincode)) {
+            document.getElementById("delivery-message").style.display = "block";
+            document.getElementById("delivery-message").classList.remove("alert-danger");
+            document.getElementById("delivery-message").classList.add("alert-success");
+            document.getElementById("delivery-message").innerText = "Delivery is available in your location.";
+            document.getElementById("buy-now-container").style.display = "block";
+        } else {
+            document.getElementById("delivery-message").style.display = "block";
+            document.getElementById("delivery-message").classList.remove("alert-success");
+            document.getElementById("delivery-message").classList.add("alert-danger");
+            document.getElementById("delivery-message").innerText = "Sorry! Delivery is not possible in your location.";
+            document.getElementById("buy-now-container").style.display = "none";
+        }
+    });
+</script>
+{% endblock content %}
