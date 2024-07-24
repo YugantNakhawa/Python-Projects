@@ -6,12 +6,11 @@ This project is a dynamic web-based application designed to aggregate bakery ser
 2. Create a virtual environment:
 
     ```python -m venv venv```
+   
    ```source venv/bin/activate  # On Windows, use "venv\Scripts\activate"```
-4. Install the required packages:
+3. Install the required packages:
 
-```pip install
-
-certifi
+```certifi
 chardet
 defusedxml
 Django
@@ -28,19 +27,20 @@ pytz
 requests
 requests-oauthlib
 sqlparse
-urllib3
+urllib3```
+
 
 Apply migrations:
 
-python manage.py migrate
+```python manage.py migrate```
 
 Create a superuser:
 
-python manage.py createsuperuser
+```python manage.py createsuperuser```
 
 Run the development server:
 
-python manage.py runserver
+```python manage.py runserver```
 
 Access the application:
 Open your web browser and navigate to http://127.0.0.1:8000/.
