@@ -6,7 +6,7 @@ This project is a dynamic web-based application designed to aggregate bakery ser
 2. Create a virtual environment:
 
     ```python -m venv venv
-    source venv/bin/activate  # On Windows, use `venv\Scripts\activate` ```
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 3. Install the required packages:
 
 pip install
