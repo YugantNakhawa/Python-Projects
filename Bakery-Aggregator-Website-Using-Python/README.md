@@ -13,23 +13,22 @@ This project is a dynamic web-based application designed to aggregate bakery ser
 
 3. Install the required packages:
 
-certifi
-chardet
-defusedxml
-Django
-django-allauth
-idna
-oauthlib
-Pillow
-pkg-resources
-python-decouple
-python3-openid
-pytz
-requests
-requests-oauthlib
-sqlparse
-urllib3
-
+- certifi
+- chardet
+- defusedxml
+- Django
+- django-allauth
+- idna
+- oauthlib
+- Pillow
+- pkg-resources
+- python-decouple
+- python3-openid
+- pytz
+- requests
+- requests-oauthlib
+- sqlparse
+- urllib3
 
 4. Apply migrations:
 
