@@ -8,26 +8,27 @@ This project is a dynamic web-based application designed to aggregate bakery ser
     ```python -m venv venv```
    
    ```source venv/bin/activate  # On Windows, use "venv\Scripts\activate"```
+
 3. Install the required packages:
 
 ```certifi
-chardet
-defusedxml
-Django
-django-allauth
-django-countries
-django-crispy-forms
-idna
-oauthlib
-Pillow
-pkg-resources
-python-decouple
-python3-openid
-pytz
-requests
-requests-oauthlib
-sqlparse
-urllib3```
+    chardet
+    defusedxml
+    Django
+    django-allauth
+    django-countries
+    django-crispy-forms
+    idna
+    oauthlib
+    Pillow
+    pkg-resources
+    python-decouple
+    python3-openid
+    pytz
+    requests
+    requests-oauthlib
+    sqlparse
+    urllib3```
 
 
 Apply migrations:
