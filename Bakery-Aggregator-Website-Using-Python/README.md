@@ -1,3 +1,5 @@
+Bakery Aggregator Website Using Python (Django Framework)
+
 This project is a dynamic web-based application designed to aggregate bakery services, allowing users to browse and purchase cakes from various bakeries. Developed using the Django framework, the platform includes robust user and admin authentication, efficient search and filter functionalities, and a streamlined inventory and order management system for administrators.
 
 **Steps:**
