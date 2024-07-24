@@ -8,15 +8,16 @@ This project aims to provide a comprehensive analysis and prediction of stock pr
 2. Clone the repository.
 3. Open Jupyter notebook and run the stock.ipynb file. In the last step, it will automatically create a .keras file in the desired location.
 4. Install the required packages.
-    1. numpy
-    2. pandas
-    3. tensorflow
-    4. keras
-    5. yfinance
-    6. streamlit
-    7. matplotlib
-    8. scikit-learn
-    9. ta (Technical Analysis Library in Python)
+   - numpy
+   - pandas
+   - tensorflow
+   - keras
+   - yfinance
+   - streamlit
+   - matplotlib
+   - scikit-learn
+   - ta (Technical Analysis Library in Python)
+
 5. Run the Streamlit application:
 
 ```streamlit run stock.py```
