@@ -29,17 +29,17 @@ sqlparse
 urllib3
 
 
-Apply migrations:
+4. Apply migrations:
 
 ```python manage.py migrate```
 
-Create a superuser:
+5. Create a superuser:
 
 ```python manage.py createsuperuser```
 
-Run the development server:
+6. Run the development server:
 
 ```python manage.py runserver```
 
-Access the application:
+7. Access the application:
 Open your web browser and navigate to http://127.0.0.1:8000/.
