@@ -18,9 +18,7 @@ This project aims to provide a comprehensive analysis and prediction of stock pr
    - scikit-learn
    - ta (Technical Analysis Library in Python)
 
-5. Run the Streamlit application:
-
-```streamlit run stock.py```
+5. Run the Streamlit application: ```streamlit run stock.py```
 
 **Usage**
 1. Enter Stock Symbol: Input the stock symbol you want to analyze (e.g., GOOG for Google).
